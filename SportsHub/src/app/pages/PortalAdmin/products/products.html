@@ -15,47 +15,45 @@
         <div class="filtros">
             <h3>Filtros</h3>
 
-            <div class="filtro">
-                <label>ID <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite o ID">
+            <div class="filtro" [class.ativo]="activeFilter === 'id'">
+                <label (click)="toggleFilter('id')">ID <span class="seta">▼</span></label>
+                <input type="text" placeholder="Digite o ID" [(ngModel)]="filtros.id" (input)="aplicarFiltros()">
             </div>
 
-            <div class="filtro">
-                <label>Produto <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite o produto">
+            <div class="filtro" [class.ativo]="activeFilter === 'produto'">
+                <label (click)="toggleFilter('produto')">Produto <span class="seta">▼</span></label>
+                <input type="text" placeholder="Digite o produto" [(ngModel)]="filtros.produto"
+                    (input)="aplicarFiltros()">
             </div>
 
-            <div class="filtro">
-                <label>Marca <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite a marca">
+            <div class="filtro" [class.ativo]="activeFilter === 'marca'">
+                <label (click)="toggleFilter('marca')">Marca <span class="seta">▼</span></label>
+                <input type="text" placeholder="Digite a marca" [(ngModel)]="filtros.marca" (input)="aplicarFiltros()">
             </div>
 
-            <div class="filtro">
-                <label>Preço <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite o preço">
+            <div class="filtro" [class.ativo]="activeFilter === 'preco'">
+                <label (click)="toggleFilter('preco')">Preço <span class="seta">▼</span></label>
+                <input type="text" placeholder="Digite o preço" [(ngModel)]="filtros.preco" (input)="aplicarFiltros()">
             </div>
 
-            <div class="filtro">
-                <label>Categoria <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite a categoria">
+            <div class="filtro" [class.ativo]="activeFilter === 'categoria'">
+                <label (click)="toggleFilter('categoria')">Categoria <span class="seta">▼</span></label>
+                <input type="text" placeholder="Digite a categoria" [(ngModel)]="filtros.categoria"
+                    (input)="aplicarFiltros()">
             </div>
 
-            <div class="filtro">
-                <label>Gênero <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite o gênero">
+            <div class="filtro" [class.ativo]="activeFilter === 'genero'">
+                <label (click)="toggleFilter('genero')">Gênero <span class="seta">▼</span></label>
+                <input type="text" placeholder="Digite o gênero" [(ngModel)]="filtros.genero"
+                    (input)="aplicarFiltros()">
             </div>
 
-            <div class="filtro">
-                <label>Cor <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite a cor">
+            <div class="filtro" [class.ativo]="activeFilter === 'cor'">
+                <label (click)="toggleFilter('cor')">Cor <span class="seta">▼</span></label>
+                <input type="text" placeholder="Digite a cor" [(ngModel)]="filtros.cor" (input)="aplicarFiltros()">
             </div>
 
-            
         </div>
-
-      
-
-
 
         <div class="tabela">
             <table>
@@ -74,84 +72,24 @@
                 </thead>
 
                 <tbody>
-                    <tr>
+                    <tr *ngFor="let produto of listaProdutosFiltrada">
                         <td><input type="checkbox"></td>
-                        <td>01</td>
-                        <td>Camisa Barcelona</td>
-                        <td>Nike</td>
-                        <td>R$200,00</td>
-                        <td>Futebol</td>
-                        <td>Masculino</td>
-                        <td>azul</td>
+                        <td>{{ produto.id }}</td>
+                        <td>{{ produto.produto }}</td>
+                        <td>{{ produto.marca }}</td>
+                        <td>{{ produto.preco }}</td>
+                        <td>{{ produto.categoria }}</td>
+                        <td>{{ produto.genero }}</td>
+                        <td>{{ produto.cor }}</td>
                         <td class="actions">
                             <img src="highlight.png" alt="">
                         </td>
                     </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>02</td>
-                        <td>Camisa Lakers</td>
-                        <td>Adidas</td>
-                        <td>R$200,00</td>
-                        <td>Basquete</td>
-                        <td>Masculino</td>
-                        <td>amarela</td>
-                        <td class="actions">
-                            <img src="highlight.png" alt="">
-                        </td>
+
+                    <tr *ngIf="listaProdutosFiltrada.length === 0">
+                        <td colspan="9" style="text-align: center;">Nenhum produto encontrado.</td>
                     </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>03</td>
-                        <td>Tênis Olympikus</td>
-                        <td>New Balance </td>
-                        <td>R$250,00</td>
-                        <td>Tênis</td>
-                        <td>Masculino</td>
-                        <td>amarela</td>
-                        <td class="actions">
-                            <img src="highlight.png" alt="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>04</td>
-                        <td>Bola de Futebol</td>
-                        <td>Nike</td>
-                        <td>R$150,00</td>
-                        <td>Futebol</td>
-                        <td>Masculino</td>
-                        <td>amarela</td>
-                        <td class="actions">
-                            <img src="highlight.png" alt="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>05</td>
-                        <td>Bola de Basquete</td>
-                        <td>Adidas</td>
-                        <td>R$150,00</td>
-                        <td>Basquete</td>
-                        <td>Masculino</td>
-                        <td>amarela</td>
-                        <td class="actions">
-                            <img src="highlight.png" alt="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>06</td>
-                        <td>Chuteira Nike</td>
-                        <td>calçados</td>
-                        <td>R$100,00</td>
-                        <td>Basquete</td>
-                        <td>Masculino</td>
-                        <td>amarela</td>
-                        <td class="actions">
-                            <img src="highlight.png" alt="">
-                        </td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
