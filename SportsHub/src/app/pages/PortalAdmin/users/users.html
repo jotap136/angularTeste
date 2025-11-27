@@ -9,80 +9,75 @@
 </head>
 
 <body>
-    <h1>Usuarios</h1>
-    <section class="principal">
-
-        <div class="filtros">
-            <h3>Filtros</h3>
-
-            <div class="filtro" [class.ativo]="activeFilter === 'id'">
-                <label (click)="toggleFilter('id')">ID <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite o ID" [(ngModel)]="filtros.id" (input)="aplicarFiltros()">
+    <app-left-sidebar class="sidebar-menu" [isLeftSidebarCollapsed]="false"></app-left-sidebar>
+    
+    <main class="page-content-wrapper">
+        <h1>Usuarios</h1>
+        
+        <section class="principal">
+            <div class="filtros">
+                <h3>Filtros</h3>
+                <div class="filtro" [class.ativo]="activeFilter === 'id'">
+                    <label (click)="toggleFilter('id')">ID <span class="seta">▼</span></label>
+                    <input type="text" placeholder="Digite o ID" [(ngModel)]="filtros.id" (input)="aplicarFiltros()">
+                </div>
+                <div class="filtro" [class.ativo]="activeFilter === 'usuario'">
+                    <label (click)="toggleFilter('usuario')">Usuario <span class="seta">▼</span></label>
+                    <input type="text" placeholder="Digite o produto" [(ngModel)]="filtros.usuario"(input)="aplicarFiltros()">
+                </div>
+                <div class="filtro" [class.ativo]="activeFilter === 'email'">
+                    <label (click)="toggleFilter('email')">Email <span class="seta">▼</span></label>
+                    <input type="text" placeholder="Digite a marca" [(ngModel)]="filtros.email" (input)="aplicarFiltros()">
+                </div>
+                <div class="filtro" [class.ativo]="activeFilter === 'tipo'">
+                    <label (click)="toggleFilter('tipo')">Tipo <span class="seta">▼</span></label>
+                    <input type="text" placeholder="Digite o preço" [(ngModel)]="filtros.tipo" (input)="aplicarFiltros()">
+                </div>
+                <div class="filtro" [class.ativo]="activeFilter === 'cpf'">
+                    <label (click)="toggleFilter('cpf')">CPF <span class="seta">▼</span></label>
+                    <input type="text" placeholder="Digite a categoria" [(ngModel)]="filtros.cpf"(input)="aplicarFiltros()">
+                </div>
+                <div class="filtro" [class.ativo]="activeFilter === 'nascimento'">
+                    <label (click)="toggleFilter('nascimento')">Nascimento <span class="seta">▼</span></label>
+                    <input type="text" placeholder="Digite o gênero" [(ngModel)]="filtros.nascimento"(input)="aplicarFiltros()">
+                </div>
             </div>
 
-            <div class="filtro" [class.ativo]="activeFilter === 'usuario'">
-                <label (click)="toggleFilter('usuario')">Usuario <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite o produto" [(ngModel)]="filtros.usuario"(input)="aplicarFiltros()">
+            <div class="tabela">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox"></th>
+                            <th>Id</th>
+                            <th>Usuário</th>
+                            <th>Email</th>
+                            <th>Tipo</th>
+                            <th>CPF</th>
+                            <th>Data de Nascimento</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let usuario of listaUsuariosFiltrada">
+                            <td><input type="checkbox"></td>
+                            <td>{{ usuario.id }}</td>
+                            <td>{{ usuario.usuario }}</td>
+                            <td>{{ usuario.email }}</td>
+                            <td>{{ usuario.tipo }}</td>
+                            <td>{{ usuario.cpf }}</td>
+                            <td>{{ usuario.nascimento }}</td>
+                            <td class="actions">
+                                <img src="highlight.png" alt="">
+                            </td>
+                        </tr>
+                        <tr *ngIf="listaUsuariosFiltrada.length === 0">
+                            <td colspan="9" style="text-align: center;">Nenhum usuario encontrado.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <div class="filtro" [class.ativo]="activeFilter === 'email'">
-                <label (click)="toggleFilter('email')">Email <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite a marca" [(ngModel)]="filtros.email" (input)="aplicarFiltros()">
-            </div>
-
-            <div class="filtro" [class.ativo]="activeFilter === 'tipo'">
-                <label (click)="toggleFilter('tipo')">Tipo <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite o preço" [(ngModel)]="filtros.tipo" (input)="aplicarFiltros()">
-            </div>
-
-            <div class="filtro" [class.ativo]="activeFilter === 'cpf'">
-                <label (click)="toggleFilter('cpf')">CPF <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite a categoria" [(ngModel)]="filtros.cpf"(input)="aplicarFiltros()">
-            </div>
-
-            <div class="filtro" [class.ativo]="activeFilter === 'nascimento'">
-                <label (click)="toggleFilter('nascimento')">Nascimento <span class="seta">▼</span></label>
-                <input type="text" placeholder="Digite o gênero" [(ngModel)]="filtros.nascimento"(input)="aplicarFiltros()">
-            </div>
-        </div>
-
-        <div class="tabela">
-            <table>
-                <thead>
-                    <tr>
-                        <th><input type="checkbox"></th>
-                        <th>Id</th>
-                        <th>Usuário</th>
-                        <th>Email</th>
-                        <th>Tipo</th>
-                        <th>CPF</th>
-                        <th>Data de Nascimento</th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr *ngFor="let usuario of listaUsuariosFiltrada">
-                        <td><input type="checkbox"></td>
-                        <td>{{ usuario.id }}</td>
-                        <td>{{ usuario.usuario }}</td>
-                        <td>{{ usuario.email }}</td>
-                        <td>{{ usuario.tipo }}</td>
-                        <td>{{ usuario.cpf }}</td>
-                        <td>{{ usuario.nascimento }}</td>
-                        <td class="actions">
-                            <img src="highlight.png" alt="">
-                        </td>
-                    </tr>
-
-                    <tr *ngIf="listaUsuariosFiltrada.length === 0">
-                        <td colspan="9" style="text-align: center;">Nenhum usuario encontrado.</td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-    </section>
-</body>
+        </section>
+    </main>
+    </body>
 
 </html>

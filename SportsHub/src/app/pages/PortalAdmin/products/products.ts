@@ -2,7 +2,8 @@
 
 import { Component, OnInit } from '@angular/core'; // 1. Importe OnInit
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // 2. Importe o FormsModule
+import { FormsModule } from '@angular/forms';
+import { LeftSidebar } from "../left-sidebar/left.sidebar"; // 2. Importe o FormsModule
 
 // 3. (Opcional, mas boa prática) Criar uma "interface" para o formato do produto
 export interface Produto {
@@ -21,7 +22,9 @@ export interface Produto {
   imports: [
     CommonModule,
     FormsModule // 4. Adicione o FormsModule aqui
-  ],
+    ,
+    LeftSidebar
+],
   templateUrl: './products.html',
   styleUrl: './products.css'
 })
@@ -52,6 +55,7 @@ export class Products implements OnInit {
 
   // 8. Lista que será MOSTRADA na tela (ela que será filtrada)
   public listaProdutosFiltrada: Produto[] = [];
+sidebarState: boolean | undefined;
 
   // 9. ngOnInit é uma função que roda uma vez quando o componente é iniciado
   ngOnInit(): void {

@@ -1,0 +1,38 @@
+<div
+  class="sidenav"
+  [ngClass]="isLeftSidebarCollapsed() ? 'sidenav-collapsed' : ''"
+>
+  <div class="logo-container">
+    
+   <img src="/SportsHub/public/img/Logo/Lg_Preto.png" alt="">
+     <button class="toggle-btn" (click)="toggleCollapse()">
+  
+  @if (isLeftSidebarCollapsed()) {
+    <i class="fal fa-indent toggle-icon"></i>
+  } @else {
+    <img ngSrc="/img/Logo/Lg_Branco.png" width="145" height="145" priority>
+    <i class="fal fa-outdent toggle-icon"></i>
+    <img src="">
+  }
+
+  </button>
+  </div>
+
+  <div class="sidenav-nav">
+    @for (item of items; track $index) {
+      <li class="sidenav-nav-item">
+        <a
+          class="sidenav-nav-link"
+          [routerLink]="item.routeLink"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <i class="sidenav-link-icon" [class]="item.icon"></i>
+          
+          <span class="sidenav-link-text">{{ item.label }}</span>
+
+        </a>
+      </li>
+    }
+  </div>    
+  </div>

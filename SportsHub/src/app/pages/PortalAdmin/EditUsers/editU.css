@@ -1,10 +1,48 @@
-/* Container principal da página */
+/* ======================================= */
+/* LAYOUT PRINCIPAL (RESOLVE A SOBREPOSIÇÃO) */
+/* ======================================= */
 
-
-.pagina-edicao {
-    width: 70em;
-    max-width: 100%;
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    /* Use um fundo claro para que o conteúdo se destaque */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Novo contêiner para o layout da página */
+.main-layout-container {
+    display: flex; /* Permite alinhar o sidebar e o conteúdo, mas como o sidebar é fixo, não é estritamente necessário aqui */
+    min-height: 100vh;
+}
+
+/* 1. POSICIONAMENTO DO MENU LATERAL */
+/* ATENÇÃO: Corrigido o seletor, que deve ser .sidebar-menu */
+.sidebar-menu {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    height: 100vh; 
+    width: 250px; 
+    background-color: #000033; 
+    z-index: 100;
+}
+
+/* 2. CONTEÚDO DA PÁGINA (PÁGINA DE EDIÇÃO) */
+.pagina-edicao {
+    /* CHAVE: Afasta o conteúdo da largura do menu fixo (250px) */
+    margin-left: 250px; 
+    padding: 40px 20px; /* Adiciona espaçamento superior/inferior e lateral */
+    
+    /* Centralização do formulário dentro do espaço restante */
+    flex-grow: 1; /* Ocupa o espaço restante */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o formulário horizontalmente */
+    
+    /* Propriedades do seu código original, mas adaptadas */
+    width: 70em; /* Largura máxima do formulário */
+    max-width: calc(100% - 300px); /* Limita para caber na tela, subtraindo o menu e um buffer */
 }
 
 .pagina-edicao h2 {
@@ -17,6 +55,7 @@
 /* Card principal que segura o formulário */
 .card-formulario {
     background-color: #fff;
+    width: 65em;
     border-radius: 8px;
     border: 1px solid #e0e0e0;
     padding: 24px;
@@ -28,17 +67,13 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    /* Permite quebrar linha em telas menores */
     gap: 40px;
-    /* Espaço entre as colunas */
 }
 
 /* Coluna da esquerda */
 .campos-formulario {
     flex: 2;
-    /* Faz os campos ocuparem mais espaço */
     min-width: 300px;
-    /* Largura mínima */
 }
 
 .form-group {
@@ -58,7 +93,6 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    /* Garante que padding não afete a largura */
     font-size: 14px;
 }
 
@@ -69,7 +103,6 @@
 /* Coluna da direita */
 .area-foto-perfil {
     flex: 1;
-    /* Ocupa menos espaço */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,20 +113,16 @@
     width: 13em;
     height: 13em;
     border-radius: 10%;
-    /* Deixa redondo */
     background-color: #000033;
-    /* Azul escuro da imagem */
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 16px;
     margin-top: 16px;
-    /* Você usaria um ícone de pessoa aqui, simulei com um span */
 }
 
 .btn-alterar-foto {
     background-color: #f0f0f0;
-    /* Cinza claro */
     border: none;
     border-radius: 4px;
     padding: 8px 16px;
@@ -106,12 +135,10 @@
 .acoes-formulario {
     display: flex;
     justify-content: flex-end;
-    /* Alinha botões à direita */
     gap: 12px;
     margin-top: 24px;
     padding-top: 24px;
     border-top: 1px solid #eee;
-    /* Linha separadora */
 }
 
 .btn {
@@ -126,14 +153,10 @@
 .btn-deletar {
     background-color: #fff;
     border: 1px solid #007bff;
-    /* Borda azul */
     color: #007bff;
-    /* Texto azul */
 }
 
 .btn-salvar {
     background-color: #007bff;
-    /* Fundo azul */
     color: #fff;
-    /* Texto branco */
 }

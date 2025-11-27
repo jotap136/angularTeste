@@ -1,0 +1,139 @@
+.sidenav {
+  background: #001836;
+  transition: all 0.5s ease;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 16.5625rem;
+  height: 100vh;
+  box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidenav-collapsed {
+  width: 5rem;
+}
+
+/* ===== LOGO E BOTÕES ===== */
+.sidenav .logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.sidenav .logo-container .toggle-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Ajustamos a regra para estilizar a classe .toggle-icon (que agora é um <i>) */
+.sidenav .logo-container .toggle-btn .toggle-icon {
+  width: 30px;
+  height: 30px;
+  color: #fff; /* Ícones de fonte precisam de cor */
+  font-size: 24px; /* Ajuste o tamanho do ícone */
+  line-height: 30px; /* Ajuda a centralizar o ícone verticalmente */
+  text-align: center; /* Ajuda a centralizar o ícone horizontalmente */
+  transition: transform 0.3s ease;
+}
+
+.sidenav .logo-container .toggle-btn:hover img {
+  transform: scale(1.1);
+}
+
+.sidenav .logo-container .logo-img {
+  width: 120px;
+  margin-top: 0.75rem;
+  transition: opacity 0.3s ease;
+}
+
+/* ===== ITENS DO MENU ===== */
+.sidenav-nav {
+  list-style: none;
+  padding: 0.938rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.sidenav-nav .sidenav-nav-item {
+  width: 100%;
+  margin-bottom: 0.625rem;
+}
+
+.sidenav-nav .sidenav-nav-item .sidenav-nav-link {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  color: #f3f3f3;
+  text-decoration: none;
+  border-radius: 0.625rem;
+  transition: all 0.3s ease;
+}
+
+.sidenav-nav .sidenav-nav-item .sidenav-nav-link .sidenav-link-icon {
+  font-size: 24px;
+  width: 2rem;
+  min-width: 2rem;
+  text-align: center;
+  padding: 12px;
+}
+
+.sidenav-nav .sidenav-nav-item .sidenav-nav-link .sidenav-link-text {
+  margin-left: 1.5rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sidenav-nav .sidenav-nav-item:hover .sidenav-nav-link {
+  background-color: #fff;
+  color: #000;
+}
+
+.active {
+  background-color: #fff;
+}
+
+.active .sidenav-link-icon,
+.active .sidenav-link-text {
+  color: #000;
+}
+
+/* ===== ANIMAÇÃO SUAVE QUANDO COLAPSA ===== */
+.sidenav-collapsed .sidenav-link-text,
+.sidenav-collapsed .logo-img {
+  opacity: 0;
+  transform: translateX(-10px);
+  pointer-events: none;
+
+  /* LINHAS ADICIONADAS: Faz o texto encolher e remove sua margem */
+  width: 0;
+  margin-left: 0;
+}
+
+/* Centraliza o ícone dentro do link quando o menu estiver colapsado */
+.sidenav-collapsed .sidenav-nav-link {
+  justify-content: center;
+}
+
+/* ===== EMPURRA O ÚLTIMO ITEM PARA O RODAPÉ ===== */
+.sidenav-nav .sidenav-nav-item:last-child {
+  /* Esta é a linha mágica que empurra o item para baixo */
+  margin-top: auto;
+
+  /* Remove a margem inferior que os outros itens têm */
+  margin-bottom: 0;
+
+  /* Opcional: Adiciona a linha separadora que existia no user-section */
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+  /* Opcional: Adiciona um espaço para a linha não colar no ícone */
+  padding-top: 0.625rem;
+}

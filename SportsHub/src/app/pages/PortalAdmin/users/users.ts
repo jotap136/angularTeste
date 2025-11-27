@@ -3,6 +3,8 @@
 import { Component, OnInit } from '@angular/core'; // 1. Importe OnInit
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // 2. Importe o FormsModule
+import { LeftSidebar } from "../left-sidebar/left.sidebar"; // 2. Importe o FormsModule
+
 
 // 3. (Opcional, mas boa prática) Criar uma "interface" para o formato do produto
 export interface Usuarios {
@@ -20,6 +22,7 @@ export interface Usuarios {
   imports: [
     CommonModule,
     FormsModule // 4. Adicione o FormsModule aqui
+    ,LeftSidebar
   ],
   templateUrl: './users.html',
   styleUrl: './users.css'
